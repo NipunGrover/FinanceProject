@@ -27,6 +27,8 @@ function App() {
   //type checking (you might have to import the SyntheticEvent from react) 
   // const onClick = (e:SyntheticEvent) => {}
   const onClick = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+
+    //taking ticker from the search box, then passing it to the searchCompanies function as a query (prop)
     const result = await searchCompanies(search);
   
     if (!result) {
@@ -49,6 +51,7 @@ function App() {
   return (
     <>
       <Search onClick={onClick} search={search} handleChange={handleChange}/>
+      {serverError && <h1>setServerError</h1>}
       <CardList/>
     </>
   )
