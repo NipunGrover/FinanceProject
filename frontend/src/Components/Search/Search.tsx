@@ -1,21 +1,15 @@
 import {useState} from 'react'
 
-type Props = {}
+interface Props {
+    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    search: string | undefined;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-const Search : React.FC<Props> = (props: Props) : JSX.Element => {
-  const[search, setSearch] = useState<string>("");
+//<Props> is what implements the interface, so that the props can be passed down to the component
+// :Props is not stricly necessary, but it is good to have it for type checking
+const Search : React.FC<Props> = ({onClick, search, handleChange}: Props) : JSX.Element => {
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSearch(e.target.value); 
-  }
-
-  //Mouse Events can be hard to deal with in react, in that case you can use 
-  //the e:SyntheticEvent, which is a broader version which covers events but also provides 
-  //type checking (you might have to import the SyntheticEvent from react) 
-  // const onClick = (e:SyntheticEvent) => {}
-  const onClick = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log(e);
-  }
 
   return (
       <div>
