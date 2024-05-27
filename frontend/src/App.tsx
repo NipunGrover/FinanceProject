@@ -52,7 +52,7 @@ function App() {
     <>
       <Search onClick={onClick} search={search} handleChange={handleChange}/>
       {serverError && <h1>setServerError</h1>}
-      <CardList/>
+      <CardList searchResults={searchResult}/>
     </>
   )
 }
