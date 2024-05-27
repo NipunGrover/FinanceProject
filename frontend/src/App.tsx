@@ -19,7 +19,7 @@ function App() {
   const [searchResult, setSearchResult] = useState<CompanySearch[]>([]); 
   const [serverError, setServerError] = useState<string>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearch(e.target.value); 
       //console.log(e);
   }
@@ -28,7 +28,9 @@ function App() {
   //the e:SyntheticEvent, which is a broader version which covers events but also provides 
   //type checking (you might have to import the SyntheticEvent from react) 
   // const onClick = (e:SyntheticEvent) => {}
-  const onClick = async (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSearchSubmit = async (e:SyntheticEvent) => {
+
+    e.preventDefault();
 
     //taking ticker from the search box, then passing it to the searchCompanies function as a query (prop)
     const result = await searchCompanies(search);
@@ -58,7 +60,7 @@ function App() {
 
   return (
     <>
-      <Search onClick={onClick} search={search} handleChange={handleChange}/>
+      <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange}/>
       {serverError && <h1>setServerError</h1>}
       <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate}/>
     </>

@@ -1,21 +1,24 @@
+import { SyntheticEvent } from "react";
 
 
 interface Props {
-    onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    onSearchSubmit: (e: SyntheticEvent) => void;
     search: string | undefined;
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 //<Props> is what implements the interface, so that the props can be passed down to the component
 // :Props is not stricly necessary, but it is good to have it for type checking
-const Search : React.FC<Props> = ({onClick, search, handleChange}: Props) : JSX.Element => {
+const Search : React.FC<Props> = ({onSearchSubmit, search, handleSearchChange}: Props) : JSX.Element => {
 
 
   return (
-      <div>
-          <input value={search} onChange={(e) => handleChange(e)}></input>
-          <button onClick={(e) => onClick(e)} />
-      </div>
+      <>
+        <form onSubmit={onSearchSubmit}>
+            <input value={search} onChange={handleSearchChange}/>
+
+        </form>
+      </>
     )
 }
 
