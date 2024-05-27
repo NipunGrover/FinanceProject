@@ -4,6 +4,8 @@ import Search from './Components/Search/Search'
 import {useState} from 'react'
 import {CompanySearch} from './company'
 import { searchCompanies } from './api'
+import {SyntheticEvent} from 'react'
+
 
 
 
@@ -46,13 +48,19 @@ function App() {
     }
 
   }
+
+  const onPortfolioCreate = ( e: SyntheticEvent) =>
+    {
+      e.preventDefault();
+      console.log(e);
+    }
  
 
   return (
     <>
       <Search onClick={onClick} search={search} handleChange={handleChange}/>
       {serverError && <h1>setServerError</h1>}
-      <CardList searchResults={searchResult}/>
+      <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate}/>
     </>
   )
 }
