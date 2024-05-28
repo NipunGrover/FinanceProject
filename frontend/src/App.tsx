@@ -5,6 +5,7 @@ import {useState} from 'react'
 import {CompanySearch} from './company'
 import { searchCompanies } from './api'
 import {SyntheticEvent} from 'react'
+import ListPortfolio from './Components/Portfolio/ListPortfolio/ListPortfolio'
 
 
 
@@ -18,6 +19,7 @@ function App() {
   const[search, setSearch] = useState<string>("");
   const [searchResult, setSearchResult] = useState<CompanySearch[]>([]); 
   const [serverError, setServerError] = useState<string>("");
+  const [portfolioValues, setPortfolioValues] = useState<string[]>([]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearch(e.target.value); 
@@ -51,10 +53,11 @@ function App() {
 
   }
 
-  const onPortfolioCreate = ( e: SyntheticEvent) =>
+  const onPortfolioCreate = ( e: any) =>
     {
       e.preventDefault();
-      console.log(e);
+      const updatedPortfolio = [...portfolioValues, e.target[0].value];
+      setPortfolioValues(updatedPortfolio);
     }
  
 
@@ -62,6 +65,7 @@ function App() {
     <>
       <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange}/>
       {serverError && <h1>setServerError</h1>}
+      <ListPortfolio portfolioValues={portfolioValues}/>
       <CardList searchResults={searchResult} onPortfolioCreate={onPortfolioCreate}/>
     </>
   )
