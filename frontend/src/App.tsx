@@ -6,6 +6,7 @@ import {CompanySearch} from './company'
 import { searchCompanies } from './api'
 import {SyntheticEvent} from 'react'
 import ListPortfolio from './Components/Portfolio/ListPortfolio/ListPortfolio'
+import Navbar from './Components/Navbar/Navbar'
 
 
 
@@ -72,6 +73,7 @@ function App() {
 
   return (
     <>
+      <Navbar/>
       <Search onSearchSubmit={onSearchSubmit} search={search} handleSearchChange={handleSearchChange}/>
       {serverError && <h1>setServerError</h1>}
       <ListPortfolio 
