@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CompanyIncomeStatement } from "../../company";
-import { useOutletContext } from "react-router";
+import { useOutletContext } from "react-router-dom";
 import { getIncomeStatement } from "../../api";
 import Table from "../Table/Table";
 
